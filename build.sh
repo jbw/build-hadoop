@@ -1,13 +1,13 @@
+#!/bin/bash
 
-VERSION=`cat VERSION`
+VERSION=${1}
 
 cd hadoop-$VERSION-src
 
-mvn package -Pdist,native -DskipTests -Dtar
+mvn -q -B package -Pdist,native -DskipTests -Dtar 
 
 if [[ $? -eq 0 ]]; then
-  echo -e "\n\ncomile hadoop $version success!\n\n"
-	#mv ./hadoop-dist/target/hadoop-$version.tar.gz /binary
+  echo -e "\n\nHadoop $VERSION build complete.\n\n"
 else
-   echo -e "\n\ncomile hadoop $version fail!\n\n"
+  echo -e "\n\nHadoop $VERSION build failed.\n\n"
 fi
