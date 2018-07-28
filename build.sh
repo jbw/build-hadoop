@@ -4,7 +4,8 @@ VERSION=${1}
 
 cd hadoop-$VERSION-src
 
-mvn -q -B package -Pdist,native -DskipTests -Dtar 
+echo "Building Hadoop $VERSION"
+mvn package -e -X -Pdist,native -DskipTests=true -Dtar 
 
 if [[ $? -eq 0 ]]; then
   echo -e "\n\nHadoop $VERSION build complete.\n\n"
